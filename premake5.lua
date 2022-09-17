@@ -3,14 +3,13 @@
 ---------------------------------------------
 group "Dependencies"
 project "GLFW"
-    kind "SharedLib" --dll file
-    language "C"
-    staticruntime "off"
+	kind "staticLib" --dll file
+	language "C"
 
-    targetdir ("bin/" .. outputDirectory .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputDirectory .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDirectory .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputDirectory .. "/%{prj.name}")
 
-    files
+	files
 	{
 		"include/GLFW/glfw3.h",
 		"include/GLFW/glfw3native.h",
@@ -30,8 +29,9 @@ project "GLFW"
 		"src/window.c",
 	}
 
-    filter "system:windows"
+	filter "system:windows"
 		systemversion "latest"
+		staticruntime "On"
 
 		files
 		{
@@ -69,4 +69,4 @@ project "GLFW"
 	filter "configurations:Dist"
 		runtime "Release"
 		optimize "on"
-        symbols "off"
+		symbols "off"
